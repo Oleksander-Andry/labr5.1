@@ -1,0 +1,65 @@
+using System;
+using System.Text;
+
+class Program
+{
+    public static void Main()
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+
+        Console.WriteLine("Абстрактний клас\n");
+        Solid shape;
+
+        Console.WriteLine("Пiрамiда: ");
+        Console.WriteLine("Введiть довжину сторони основу пiрамiди:");
+        double a = double.Parse(Console.ReadLine());
+        Console.WriteLine("Введiть висоту пiрамiди:");
+        double h = double.Parse(Console.ReadLine());
+
+        shape = new Pyramid(a, h);
+        Console.WriteLine("Периметр: " + shape.GetVolume() + "\n");
+
+        Console.WriteLine("Куля: ");
+        Console.WriteLine("Введiть радiус кулi:");
+        double r = double.Parse(Console.ReadLine());
+
+
+        shape = new Sphere(r);
+        Console.WriteLine("Площа: " + shape.GetVolume() + "\n");
+
+        Console.ReadKey();
+    }
+}
+public abstract class Solid
+{
+    public abstract double GetVolume();
+}
+public class Pyramid : Solid
+{
+    public double A;
+    public double H;
+
+    public Pyramid(double a, double h)
+    {
+        A = a;
+        H = h;
+    }
+
+    public override double GetVolume()
+    {
+        return (1.0 / 3.0) * Math.Pow(A, 2) * H;
+    }
+}
+public class Sphere : Solid
+{
+    public double R;
+
+    public Sphere(double r)
+    {
+        R = r;
+    }
+    public override double GetVolume()
+    {
+        return (4 / 3) * Math.Pow(R, 3);
+    }
+}
